@@ -1,0 +1,10 @@
+:root {
+  --color-bg: #f5f7ff;
+  --color-navbar: #4f46e5;
+  --color-primary: #3730a3;
+  --color-footer: #818cf8;
+}
+.dark {
+  --color-bg: #0f172a;
+  --color-navbar: #1e293b;
+}
