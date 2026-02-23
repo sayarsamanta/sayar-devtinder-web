@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBar from "./components/navBar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./components/footer";
 import { useSelector } from "react-redux";
+import useGetUser from "./hook/getUser";
+import { Toaster } from "react-hot-toast";
 function Body() {
   const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
+  const { getUser, loading, error } = useGetUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    // if token is there but user data is not there then we can fetch the user data and set it in the store
+    if (!user) {
+      // fetch user data and set it in the store
+      // we can use the getUser hook to fetch the user data and set it in the store
+      // we can also use the token to fetch the user data
+      getUser();
+    } else if ((!token && !user) || error) {
+      // if token is not there then we can proceed to login page
+      navigate("/login");
+    } else {
+      // if user data is there then we can proceed to home page
+      navigate("/");
+    }
+  }, []);
   return (
-    <div className="h-screen" style={{ backgroundColor: "var(--color-body)" }}>
+    <div
+      className="flex flex-col h-screen font-['Poppins']"
+      style={{ backgroundColor: "var(--color-body)" }}
+    >
       <NavBar />
-      <Outlet />
+      <div className="flex-1 pb-24">
+        <Outlet />
+      </div>
+
       {user && <Footer />}
+      <Toaster />
     </div>
   );
 }

@@ -1,41 +1,48 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../app/slice/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../utils/constants";
+import axios from "axios";
+import { logout as SignOut } from "../app/slice/userSlice";
 
 export function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-  console.log("User in NavBar:", user);
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     const text = e.target.textContent;
     if (text === "Logout") {
-      // Dispatch logout action here
-      console.log("Logout clicked");
-      dispatch(logout()); // Assuming you have a logout action defined in your user slice
-      navigate("/login"); // Redirect to login page after logout
-    } else if (text === "Profile") {
-      // Navigate to profile page
-      console.log("Profile clicked");
-    } else if (text === "Settings") {
-      // Navigate to settings page
-      console.log("Settings clicked");
+      const logout = await axios.post(
+        API_BASE_URL + "logout",
+        {},
+        { withCredentials: true }
+      );
+      if (logout.status === 200) {
+        dispatch(SignOut());
+        navigate("/login");
+      }
+    } else if (text === "ProfileNew") {
+      navigate("/profile");
+    } else if (text === "Your Requests") {
+      navigate("/requests");
+    } else if (text === "Your Connections") {
+      navigate("/connections");
     }
   };
   return (
     <div
-      className="navbar shadow-sm shadow-[#818cf8]"
+      className="navbar shadow-sm shadow-[#818cf8] px-5"
       style={{ backgroundColor: "var(--color-navbar)" }}
     >
       <div className="flex-1">
-        <a className="font-['Space_Grotesk'] btn btn-ghost text-2xl text-white">
+        <Link to={"/"} className="font-['Space_Grotesk'] text-2xl text-white">
           Dev Tinder
-        </a>
+        </Link>
       </div>
       {user && (
-        <div className="font-['Poppins'] flex gap-2">
+        <div className="font-['Poppins'] flex">
           <input
             type="text"
             placeholder="Search"
@@ -58,6 +65,7 @@ export function NavBar() {
               tabIndex="-1"
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
               onClick={(e) => {
+                document.activeElement.blur();
                 handleClick(e);
               }}
             >
@@ -68,7 +76,10 @@ export function NavBar() {
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <a className="justify-between">Your Requests</a>
+              </li>
+              <li>
+                <a className="justify-between">Your Connections</a>
               </li>
               <li>
                 <a>Logout</a>

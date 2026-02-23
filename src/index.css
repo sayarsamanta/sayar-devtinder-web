@@ -1,2 +1,50 @@
 @import "tailwindcss";
 @plugin "daisyui";
+body {
+  @apply overflow-hidden;
+}
+@layer base {
+  input,
+  textarea,
+  select {
+    color: var(--color-primary);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-primary);
+    opacity: 0.6;
+  }
+}
+@layer utilities {
+  .animate-fadeIn {
+    animation: fadeInUp 0.7s ease-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+button,
+a,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  cursor: pointer;
+}

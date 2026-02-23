@@ -1,105 +1,122 @@
 import React from "react";
-import axios, { isCancel, AxiosError } from "axios";
-import { useDispatch } from "react-redux";
-import { setUser } from "../app/slice/userSlice";
-import { API_BASE_URL } from "../utils/constants";
-import { useNavigate } from "react-router-dom";
+import useLogin from "../hook/userLogin";
+import { Eye, EyeOff } from "lucide-react";
 function Login() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [show, setShow] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState("");
+  const { login, loading, error } = useLogin();
   const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      setLoading(true);
-      const res = await axios.post(
-        API_BASE_URL + "login",
-        {
-          email,
-          password,
-        },
-        { withCredentials: true }
-      );
-      if (res.status === 200) {
-        // Handle successful login, e.g., redirect to dashboard
-        dispatch(setUser(res?.data?.data));
-        navigate("/");
-      }
-    } catch (error) {
-      if (isCancel(error)) {
-        setError("Request cancelled");
-      } else if (error instanceof AxiosError) {
-        setError(
-          error.response?.data?.message || "An error occurred during login"
-        );
-      } else {
-        setError("An unexpected error occurred");
-      }
-    } finally {
-      setLoading(false);
-    }
+    e.preventDefault();
+    await login(email, password);
   };
   return (
-    <div className="flex items-center justify-center mt-32 font-['Poppins']">
+    <div className="flex justify-center items-start pt-28 px-4 font-['Poppins'] min-h-screen bg-(--color-bg)">
       <fieldset
-        className="fieldset bg-base-200 rounded-box w-xs p-4 h-80 shadow-2xl"
+        className="
+      bg-base-200
+      rounded-2xl
+      w-full
+      max-w-md
+      md:max-w-lg
+      p-8 md:p-10
+      shadow-xl
+      flex flex-col
+      gap-6
+      h-130
+    "
         style={{ backgroundColor: "var(--color-navbar)" }}
       >
-        <label
-          className="fieldset-legend flex justify-center text-lg font-['Space_Grotesk']"
+        {/* Title */}
+        <h2
+          className="text-2xl font-semibold text-center tracking-wide font-['Space_Grotesk']"
           style={{ color: "var(--color-bg)" }}
         >
-          Login
-        </label>
+          Welcome Back
+        </h2>
 
-        <label className="label" style={{ color: "var(--color-bg)" }}>
-          Email
-        </label>
-        <input
-          type="email"
-          className="input focus:outline-none focus:ring-0 focus:border-[#818cf8] focus:border-2"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ backgroundColor: "var(--color-bg)" }}
-        />
+        {/* Email Section */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm" style={{ color: "var(--color-bg)" }}>
+            Email
+          </label>
+          <input
+            type="email"
+            className="input w-full h-12 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            style={{
+              backgroundColor: "var(--color-bg)",
+              color: "var(--color-footer)",
+            }}
+          />
+        </div>
 
-        <label className="label" style={{ color: "var(--color-bg)" }}>
-          Password
-        </label>
-        <input
-          type="password"
-          className="input focus:outline-none focus:ring-0 focus:border-[#818cf8] focus:border-2"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ backgroundColor: "var(--color-bg)" }}
-        />
+        {/* Password Section */}
+        <div className="flex flex-col gap-2">
+          <label className="text-sm" style={{ color: "var(--color-bg)" }}>
+            Password
+          </label>
 
+          <div className="relative">
+            <input
+              type={show ? "text" : "password"}
+              className="input w-full h-12 rounded-lg focus:ring-2 focus:ring-indigo-400 focus:outline-none transition"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{
+                backgroundColor: "var(--color-bg)",
+                color: "var(--color-footer)",
+              }}
+            />
+
+            <button
+              type="button"
+              onClick={() => setShow(!show)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-indigo-600 transition"
+            >
+              {show ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Button */}
         <button
           disabled={loading}
-          className="btn btn-neutral mt-4 border-0 shadow-sm shadow-[#818cf8]"
+          className="
+        w-full
+        h-12
+        rounded-lg
+        font-medium
+        shadow-md
+        hover:shadow-lg
+        active:scale-[0.98]
+        transition-all
+        duration-300
+        flex
+        items-center
+        justify-center
+        mt-7
+      "
           style={{
             backgroundColor: "var(--color-bg)",
             color: "var(--color-navbar)",
           }}
           type="submit"
-          onClick={(e) => {
-            handleSubmit(e);
-          }}
+          onClick={(e) => handleSubmit(e)}
         >
           {loading && (
-            <span className="w-4 h-4 border-2 border-[#4f46e5] border-t-transparent rounded-full animate-spin"></span>
+            <span className="w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin"></span>
           )}
-
-          {loading ? "Submitting..." : "Submit"}
+          {loading ? "Signing in..." : "Sign In"}
         </button>
+
+        {/* Error */}
         {error && (
           <span
-            className="color-red text-sm mt-2"
+            className="text-sm text-center"
             style={{ color: "var(--color-error)" }}
           >
             {error}
