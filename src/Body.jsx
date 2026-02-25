@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import NavBar from "./components/navBar";
+import NavBar from "./components/NavBar";
 import { Outlet, useNavigate } from "react-router-dom";
-import Footer from "./components/footer";
+import Footer from "./components/Footer";
 import { useSelector } from "react-redux";
 import useGetUser from "./hook/getUser";
 import { Toaster } from "react-hot-toast";

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import useUpdatePassword from "../hook/updatePassword";
-import { useSelector } from "react-redux";
 
 export default function ForgetPassword({ setShowEdit }) {
   const { updatePassword, loading } = useUpdatePassword();
