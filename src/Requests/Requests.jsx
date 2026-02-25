@@ -1,21 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useRequests from "../hook/getRequests";
 import { useSelector } from "react-redux";
 import RequestCard from "../components/RequestCard";
 import useAcceptOrRejectRequest from "../hook/acceptOrRejectRequest";
+import { showToast } from "../utils/toast";
 
 const Requests = () => {
-  const { getRequests, loading, error } = useRequests();
+  const { loading, error } = useRequests();
   const requests = useSelector((state) => state.user.requests);
-  const {
-    acceptOrRejectRequest,
-    loading: actionLoading,
-    error: actionError,
-  } = useAcceptOrRejectRequest();
+  const { acceptOrRejectRequest } = useAcceptOrRejectRequest();
 
   const acceptOrReject = async (requestId, status) => {
     // Implement the logic to accept or reject the request
-    await acceptOrRejectRequest(requestId, status);
+    try {
+      await acceptOrRejectRequest(requestId, status);
+      showToast("Request " + status + " successfully.", "success");
+    } catch (error) {
+      showToast("Failed to update request status. Please try again.", "error");
+    }
   };
   if (loading) {
     return (

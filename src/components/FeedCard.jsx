@@ -15,7 +15,7 @@ const FeedCard = ({
   isFirst,
 }) => {
   return (
-    <div className="flex justify-center items-start h-96 pt-28 px-4">
+    <div className="flex justify-center items-start pt-28 px-4">
       <div className=" rounded-3xl shadow-xl overflow-hidden transform transition duration-300 hover:scale-105 bg-[#818cf8]">
         {/* Profile Image */}
         <div className="relative h-120 w-120">
@@ -39,7 +39,7 @@ const FeedCard = ({
           {/* Action Buttons */}
           <div className="absolute bottom-2 right-4 flex">
             <button
-              onClick={() => onRejected(_id)}
+              onClick={() => onRejected(_id, "ignored")}
               className="w-14 h-14 rounded-full 
                 bg-white/90 text-red-500
                flex items-center justify-center text-2xl
@@ -50,7 +50,7 @@ const FeedCard = ({
             </button>
 
             <button
-              onClick={() => onInterested(_id)}
+              onClick={() => onInterested(_id, "interested")}
               className="w-14 h-14 rounded-full bg-white text-fuchsia-400 text-xl flex items-center justify-center shadow-lg hover:scale-110 transition"
             >
               ♥
@@ -88,7 +88,7 @@ const FeedCard = ({
       ${
         isLast
           ? "bg-white/40 text-white cursor-not-allowed"
-          : "bg-white text-[var(--color-primary)] hover:scale-105 shadow-md"
+          : "bg-white text-(--color-primary) hover:scale-105 shadow-md"
       }
     `}
             >

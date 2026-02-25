@@ -30,6 +30,11 @@ export const userSlice = createSlice({
         (req) => req._id.toString() !== action.payload.toString()
       );
     },
+    removeConnection: (state, action) => {
+      state.connections = state.connections.filter(
+        (conn) => conn._id.toString() !== action.payload.toString()
+      );
+    },
   },
 });
 
@@ -40,5 +45,6 @@ export const {
   setRequests,
   setConnections,
   removeRequest,
+  removeConnection,
 } = userSlice.actions;
 export default userSlice.reducer;

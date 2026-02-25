@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios, { isCancel, AxiosError } from "axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,16 @@ import { showToast } from "../utils/toast";
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (!error) return;
+
+    const timer = setTimeout(() => {
+      setError("");
+    }, 2000);
+
+    return () => clearTimeout(timer); // cleanup
+  }, [error]);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,13 +42,10 @@ const useLogin = () => {
     } catch (error) {
       if (isCancel(error)) {
         setError("Request cancelled");
-        showToast("Request cancelled", "error");
       } else if (error instanceof AxiosError) {
         setError(getErrorMessage(error));
-        showToast(getErrorMessage(error), "error");
       } else {
         setError("An unexpected error occurred");
-        showToast("An unexpected error occurred", "error");
       }
     } finally {
       setLoading(false);

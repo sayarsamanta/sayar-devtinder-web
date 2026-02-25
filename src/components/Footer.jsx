@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <footer
-      className="flex justify-between font-['Poppins'] footer sm:footer-horizontal text-neutral-content items-center p-4 fixed bottom-0 text-xs sm:text-sm md:text-base"
+      className="hidden md:flex justify-between font-['Poppins'] footer sm:footer-horizontal text-neutral-content items-center p-4 fixed bottom-0 text-xs sm:text-sm md:text-base"
       style={{ backgroundColor: "var(--color-footer)" }}
     >
       <aside className="grid-flow-col items-center">

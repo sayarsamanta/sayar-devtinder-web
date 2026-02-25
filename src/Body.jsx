@@ -27,13 +27,19 @@ function Body() {
   }, []);
   return (
     <div
-      className="flex flex-col h-screen font-['Poppins']"
+      className="h-dvh flex flex-col font-['Poppins']"
       style={{ backgroundColor: "var(--color-body)" }}
     >
       <NavBar />
-      <div className="flex-1 pb-24">
-        <Outlet />
-      </div>
+      <main className="flex-1 overflow-y-auto scrollbar-hide">
+        <div
+          className={`min-h-full px-4 pt-10 ${
+            user ? "pb-28 sm:pb-32" : "pb-16 sm:pb-24"
+          }`}
+        >
+          <Outlet />
+        </div>
+      </main>
 
       {user && <Footer />}
       <Toaster />
