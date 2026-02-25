@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FeedCard from "../components/FeedCard";
 import useFeed from "../hook/getFeed";
 import { useSelector } from "react-redux";

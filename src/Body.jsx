@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import NavBar from "./components/NavBar";
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "./components/Footer";
@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 function Body() {
   const user = useSelector((state) => state.user.user);
   const token = useSelector((state) => state.user.token);
-  const { getUser, loading, error } = useGetUser();
+  const { getUser, error } = useGetUser();
   const navigate = useNavigate();
   useEffect(() => {
     // if token is there but user data is not there then we can fetch the user data and set it in the store

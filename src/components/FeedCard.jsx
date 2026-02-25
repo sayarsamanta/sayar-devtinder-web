@@ -1,5 +1,3 @@
-import React from "react";
-
 const FeedCard = ({
   firstName,
   lastName,

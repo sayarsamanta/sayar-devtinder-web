@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useConnections from "../hook/getConnections";
 import { useDispatch, useSelector } from "react-redux";
 import RequestCard from "../components/RequestCard";

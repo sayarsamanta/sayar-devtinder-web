@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { API_BASE_URL } from "../utils/constants";
 import axios, { isAxiosError } from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { removeRequest, setRequests } from "../app/slice/userSlice";
+import { useDispatch } from "react-redux";
+import { removeRequest } from "../app/slice/userSlice";
 
 const useAcceptOrRejectRequest = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const requests = useSelector((state) => state.user.requests);
 
   const acceptOrRejectRequest = async (requestId, status) => {
     setLoading(true);

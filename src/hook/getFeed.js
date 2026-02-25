@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios, { isCancel, AxiosError } from "axios";
 import { API_BASE_URL } from "../utils/constants";
 import { showToast } from "../utils/toast";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setFeed } from "../app/slice/feedSlice"; // adjust path
 const useFeed = () => {

@@ -1,4 +1,3 @@
-import React from "react";
 import useRequests from "../hook/getRequests";
 import { useSelector } from "react-redux";
 import RequestCard from "../components/RequestCard";
