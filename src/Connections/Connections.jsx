@@ -8,6 +8,7 @@ import { removeConnection } from "../app/slice/userSlice";
 import { showToast } from "../utils/toast";
 const Connections = () => {
   const connections = useSelector((state) => state.user.connections);
+  console.log(connections);
   const { getConnections, loading, error } = useConnections();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,31 +45,33 @@ const Connections = () => {
       </div>
     );
   }
-  if (connections.length === 0) {
+  if (connections?.message || connections.length === 0) {
     return (
       <div className="flex justify-center items-center text-lg text-white my-6">
         No connections received.
       </div>
     );
   }
-  return (
-    <div className="flex flex-col justify-center items-center lg:ml-7 mt-5 h-[70vh]">
-      <h2 className="text-2xl font-bold mb-4 text-white">Connections</h2>
-      <ul className="space-y-4 flex flex-col justify-between p-4 overflow-y-auto scrollbar-hide">
-        {connections.map((connection) => (
-          <RequestCard
-            user={connection?.fromUserId}
-            status={connection?.status}
-            onAccept={() => {}}
-            onReject={() => {}}
-            onDelete={() => {
-              deleteConnection(connection._id);
-            }}
-          />
-        ))}
-      </ul>
-    </div>
-  );
+  if (connections.length > 0) {
+    return (
+      <div className="flex flex-col justify-center items-center lg:ml-7 mt-5 h-[70vh]">
+        <h2 className="text-2xl font-bold mb-4 text-white">Connections</h2>
+        <ul className="space-y-4 flex flex-col justify-between p-4 overflow-y-auto scrollbar-hide">
+          {connections.map((connection) => (
+            <RequestCard
+              user={connection?.fromUserId}
+              status={connection?.status}
+              onAccept={() => {}}
+              onReject={() => {}}
+              onDelete={() => {
+                deleteConnection(connection._id);
+              }}
+            />
+          ))}
+        </ul>
+      </div>
+    );
+  }
 };
 
 export default Connections;

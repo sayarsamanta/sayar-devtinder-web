@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "target": "ESNext",
+      "jsx": "react-jsx",
+      "lib": ["DOM", "DOM.Iterable", "ESNext"], // Tells it you're in a browser environment
+      "checkJs": false,
+      "forceConsistentCasingInFileNames": true,
+      "baseUrl": "./src",
+      "paths": {
+        "@/*": ["*"]
+      }
+    },
+    "exclude": ["node_modules", "dist"]
+  }
