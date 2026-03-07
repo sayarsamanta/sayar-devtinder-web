@@ -1,16 +1,70 @@
-# React + Vite
+# Dev Tinder 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Dev Tinder** is a modern networking app for developers, inspired by the Tinder interface, designed to help developers discover, connect, and collaborate with fellow coders. Swipe, match, and build your dev circle seamlessly.  
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔥 Features
 
-## React Compiler
+- **Swipe Interface:** Swipe right to like, left to pass on developer profiles.
+- **Developer Profiles:** Showcase skills, tech stack, portfolio links, and GitHub stats.
+- **User Connections:**  
+  - Send connection requests.  
+  - View all pending requests.  
+  - Accept or decline requests.  
+  - See all confirmed connections.
+- **Authentication:**  
+  - Registration page for new users.  
+  - Secure login with JWT authentication.  
+  - Password update and profile editing functionality.  
+  - Logout functionality for session security.
+- **Real-time Chat:** Chat instantly with matched developers. (under development)
+- **Search & Filters:** Filter developers by programming language, experience, or location.
+- **Responsive Design:** Optimized for desktop and mobile screens.
+- **State Management:** Built with Redux Toolkit for handling complex state efficiently.
+- **UI Styling:** Tailwind CSS for modern, responsive, and reusable components.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Frontend:**  
+React.js, Redux Toolkit, Tailwind CSS, HTML5, CSS3  
+
+**Backend:**  
+Node.js, Express.js, MongoDB, RESTful APIs, JWT Authentication  
+
+**Hosting & Deployment:**  
+AWS EC2 (public IP hosting)  
+
+**Tools & Practices:**  
+Git & GitHub, Firebase, CI/CD, Agile, Scrum, Performance Optimization, Responsive Design  
+
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js v18+  
+- MongoDB  
+- npm or yarn
+
+### Screenshots
+![Alt Text](./screenshots/login.png)
+![Alt Text](./screenshots/register.png)
+![Alt Text](./screenshots/connections.png)
+![Alt Text](./screenshots/profile.png)
+![Alt Text](./screenshots/requests.png)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/<your-username>/dev-tinder.git
+cd dev-tinder
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+
