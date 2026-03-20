@@ -23,7 +23,9 @@ export function NavBar() {
 
   const fetchFeed = async () => {
     try {
-      searchFeed(search);
+      if (search.length) {
+        searchFeed(search);
+      }
     } catch (err) {
       showToast("Failed to fetch feed. Please try again.", "error");
     }
