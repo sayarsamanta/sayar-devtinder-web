@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../app/slice/userSlice"; // adjust path
 import { API_BASE_URL } from "../utils/constants"; // adjust path
 import { useNavigate } from "react-router-dom";
-import toast from "../../node_modules/daisyui/components/toast/index";
-import { showToast } from "@/utils/toast";
+import { showToast } from "../../src/utils/toast";
 
 const useGetUser = () => {
   const [loading, setLoading] = useState(false);

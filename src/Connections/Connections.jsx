@@ -8,7 +8,6 @@ import { removeConnection } from "../app/slice/userSlice";
 import { showToast } from "../utils/toast";
 const Connections = () => {
   const connections = useSelector((state) => state.user.connections);
-  console.log(connections);
   const { getConnections, loading, error } = useConnections();
   const dispatch = useDispatch();
   useEffect(() => {
