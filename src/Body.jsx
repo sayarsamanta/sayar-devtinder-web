@@ -11,12 +11,11 @@ function Body() {
   const { getUser, error } = useGetUser();
   const navigate = useNavigate();
   useEffect(() => {
-    // if token is there but user data is not there then we can fetch the user data and set it in the store
     if (!user) {
-      // fetch user data and set it in the store
-      // we can use the getUser hook to fetch the user data and set it in the store
-      // we can also use the token to fetch the user data
-      getUser();
+      async function fetchData() {
+        await getUser();
+      }
+      fetchData();
     } else if ((!token && !user) || error) {
       // if token is not there then we can proceed to login page
       navigate("/login");
