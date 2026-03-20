@@ -14,9 +14,12 @@ const useSearchFeed = () => {
   const searchFeed = async (search) => {
     setLoading(true);
     try {
-      const res = await axios.get(API_BASE_URL + `user/feed?search=${search}`, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        API_BASE_URL + `/user/feed?search=${search}`,
+        {
+          withCredentials: true,
+        }
+      );
       setFeed(res.data);
       dispatch(setFeed(res?.data || []));
     } catch (err) {

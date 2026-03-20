@@ -15,7 +15,7 @@ const useUpdatePassword = () => {
     setLoading(true);
     try {
       const data = await axios.patch(
-        API_BASE_URL + "user/updatePassword/" + _id,
+        API_BASE_URL + "/user/updatePassword/" + _id,
         { oldPassword, newPassword },
         { withCredentials: true }
       );

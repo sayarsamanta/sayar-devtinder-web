@@ -20,7 +20,7 @@ const useSignup = () => {
         skills: formData.skills,
       };
 
-      const response = await axios.post(API_BASE_URL + "signup", payload, {
+      const response = await axios.post(API_BASE_URL + "/signup", payload, {
         withCredentials: true,
       });
 

@@ -16,7 +16,7 @@ const Connections = () => {
   }, []);
   const deleteConnection = async (connectionId) => {
     try {
-      await axios.delete(API_BASE_URL + `disconnect/${connectionId}`, {
+      await axios.delete(API_BASE_URL + `/disconnect/${connectionId}`, {
         withCredentials: true,
       });
       dispatch(removeConnection(connectionId));
@@ -25,7 +25,7 @@ const Connections = () => {
       showToast("Failed to delete connection. Please try again.", "error");
     }
     // Implement the logic to delete the connection
-    await axios.delete(API_BASE_URL + `disconnect/${connectionId}`, {
+    await axios.delete(API_BASE_URL + `/disconnect/${connectionId}`, {
       withCredentials: true,
     });
 

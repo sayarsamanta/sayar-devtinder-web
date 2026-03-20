@@ -15,7 +15,7 @@ const useSentOrIgnored = () => {
 
     try {
       const res = await axios.post(
-        API_BASE_URL + "connect/" + actionType + "/" + userId,
+        API_BASE_URL + "/connect/" + actionType + "/" + userId,
         {},
         { withCredentials: true }
       );

@@ -14,7 +14,7 @@ const useRequests = () => {
     setError(null);
 
     try {
-      const res = await axios.get(API_BASE_URL + "requests/received", {
+      const res = await axios.get(API_BASE_URL + "/requests/received", {
         withCredentials: true,
       });
 

@@ -17,7 +17,7 @@ const useFeed = () => {
       setLoading(true);
       setError(null);
 
-      const res = await axios.get(API_BASE_URL + "feed", {
+      const res = await axios.get(API_BASE_URL + "/feed", {
         withCredentials: true,
       });
 

@@ -15,7 +15,7 @@ const useAcceptOrRejectRequest = () => {
     // Optimistically remove the request from the state
     try {
       const res = await axios.post(
-        API_BASE_URL + `request/review/${status}/${requestId}`,
+        API_BASE_URL + `/request/review/${status}/${requestId}`,
         {},
         { withCredentials: true }
       );

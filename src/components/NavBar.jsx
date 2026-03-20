@@ -33,7 +33,7 @@ export function NavBar() {
     const text = e.target.textContent;
     if (text === "Logout") {
       const logout = await axios.post(
-        API_BASE_URL + "logout",
+        API_BASE_URL + "/logout",
         {},
         { withCredentials: true }
       );

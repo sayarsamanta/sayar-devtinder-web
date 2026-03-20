@@ -17,7 +17,7 @@ const useGetUser = () => {
       setLoading(true);
       setError(null);
 
-      const res = await axios.get(API_BASE_URL + "user", {
+      const res = await axios.get(API_BASE_URL + "/user", {
         withCredentials: true,
       });
 

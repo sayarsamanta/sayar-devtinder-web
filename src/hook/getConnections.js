@@ -13,7 +13,7 @@ const useConnections = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(API_BASE_URL + "request/connections", {
+      const res = await axios.get(API_BASE_URL + "/request/connections", {
         withCredentials: true,
       });
       if (res.status === 200) {

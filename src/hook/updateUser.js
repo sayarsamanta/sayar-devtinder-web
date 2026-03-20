@@ -22,7 +22,7 @@ const useUpdateUser = () => {
       setError(null);
 
       const res = await axios.patch(
-        API_BASE_URL + "user/edit/" + _id,
+        API_BASE_URL + "/user/edit/" + _id,
         userData,
         {
           withCredentials: true,
